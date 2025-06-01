@@ -1,70 +1,91 @@
-# Getting Started with Create React App
+# 🛡️ Government Health Pool dApp
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### A Blockchain-Based Health Insurance System for India's Below Poverty Line (BPL) Citizens
 
-## Available Scripts
+> A decentralized solution to ensure fair, fast, and transparent access to government-backed healthcare benefits — without middlemen or corruption.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🚨 The Problem
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Government health schemes in India for BPL citizens are riddled with inefficiencies:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Manual paperwork and corruption** often delay or deny treatment
+- Lack of **tracking or transparency** leads to misused funds
+- **Middlemen and fake claims** deprive genuine BPL citizens of support
+- **One person can exploit the system multiple times**, draining limited resources
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## ✅ Our Solution: Government Health Pool dApp
 
-### `npm run build`
+The **Government Health Pool dApp** is a blockchain-powered decentralized application that enables BPL citizens to:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Get verified by submitting their BPL card number
+- Join the health pool by paying a minimal fee (0.0001 ETH)
+- Submit a one-time medical claim with hospital details
+- Receive a **payout of 5×** the joining fee upon government approval
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+All while ensuring **security, fairness, and immutability** through Ethereum smart contracts.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 💡 Key Features / USPs
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- 🔒 **Owner-Controlled Admin Panel**: Only the government (contract owner) can approve BPL verifications and claims
+- 👤 **Role-Based Access**: Dynamic frontend UI based on user role (Citizen, Government, Validator)
+- ✅ **One-Time Access Control**: A citizen can verify BPL, join the pool, and submit a claim **only once**
+- 📜 **On-Chain Verification**: BPL status and claims are recorded transparently
+- ⚖️ **Claim Validation**: Validators or owner can verify each claim before payout
+- 💵 **5× Fixed Payout**: Government sends a 5x payout after approving the medical claim
+- 🏥 **Hospital Document Number**: Each claim must include a document number for authenticity
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🧠 How It Works
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 👤 Citizen
+1. Uploads BPL card number to the smart contract
+2. Waits for government approval via admin panel
+3. Pays 0.0001 ETH to join the pool
+4. Submits claim (reason + hospital document number)
 
-## Learn More
+### 👑 Government (Owner)
+- Approves or rejects BPL applications
+- Adds validators
+- Validates or rejects submitted claims
+- Sends 5× payout to verified pool members
+- Funds the pool from time to time
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 🛡️ Validator
+- Assists in verifying claim authenticity before government approval
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 🧱 Smart Contract Logic
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Written in **Solidity**
+- Deployed using **Remix IDE**
+- Interacted via **ethers.js** from the frontend
+- **Deployed Contract Address** must be manually pasted into the frontend file
 
-### Analyzing the Bundle Size
+### Key Functions
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+submitBPLCard(string memory bplNumber) public;
+approveBPLVerification(address user) public onlyOwner;
+joinPool() public payable;
+submitClaim(string memory reason, string memory documentId) public;
+validateClaim(uint claimId) public onlyValidatorOrOwner;
+payoutClaim(uint claimId) public onlyOwner;
+addValidator(address validator) public onlyOwner;
+fundPool() public payable onlyOwner;
 
-### Making a Progressive Web App
+## 👁️‍🗨️ Workflow Overview
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+A[Citizen: Submit BPL Card Number] --> B[Admin Panel Review]
+B --> C[Owner Approves BPL Status]
+C --> D[Citizen Joins Pool (0.0001 ETH)]
+D --> E[Citizen Submits Claim (Reason + Hospital Doc No)]
+E --> F[Validator/Owner Validates Claim]
+F --> G[Owner Sends 5× Payout from Pool]
+H[Owner Funds Pool] --> G
