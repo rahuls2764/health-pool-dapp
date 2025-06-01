@@ -89,3 +89,39 @@ D --> E[Citizen Submits Claim (Reason + Hospital Doc No)]
 E --> F[Validator/Owner Validates Claim]
 F --> G[Owner Sends 5× Payout from Pool]
 H[Owner Funds Pool] --> G
+
+## 👑 How to Become the Owner (Government)
+
+1. Open [Remix IDE](https://remix.ethereum.org/).
+2. Create a new Solidity file and paste your smart contract code.
+3. Compile the contract and deploy it to your desired Ethereum testnet (e.g., Sepolia, Mumbai) using your wallet.
+4. The deploying wallet/account automatically becomes the contract owner (government).
+5. Copy the deployed contract address.
+
+## 🖥️ Configuring and Running the Frontend
+1. Open the frontend project folder.
+2. Open the file `src/HealthPoolDapp.js`.
+3. Replace the placeholder contract address with your deployed contract address:
+
+const CONTRACT_ADDRESS = "YOUR_DEPLOYED_CONTRACT_ADDRESS_HERE";
+
+4. Save the file.
+5. Install dependencies if you haven't yet:
+6. The dApp should open in your browser 
+
+---
+
+## 🙌 Thank You!
+
+Thank you for reviewing the Government Health Pool dApp.  
+We believe this decentralized solution will empower BPL citizens by ensuring transparent, fair, and efficient access to vital healthcare benefits.  
+
+We welcome your feedback and are excited to contribute to building a healthier, corruption-free future!
+
+
+## 📞 Contact
+
+For any questions or collaboration, feel free to reach out:  
+**Email:** sonirahul2764@gmail.com
+**GitHub:** https://github.com/rahuls2764
+
